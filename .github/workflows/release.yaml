@@ -2,10 +2,8 @@
 # e.g., foobar-1.2.3-1
 name: Release
 on:
-  push:
-    tags:
-    - '*-*-*'
-
+  workflow_dispatch: 
+permissions: write-all
 jobs:
   build:
     outputs:
@@ -14,8 +12,7 @@ jobs:
       BUILD: ${{ steps.vars.outputs.BUILD }}
     strategy:
       matrix:
-        host: ["arm-linux-androideabi", "aarch64-linux-android",
-               "i686-linux-android", "x86_64-linux-android"]
+        host: ["arm-linux-androideabi", "aarch64-linux-android", "i686-linux-android", "x86_64-linux-android"]
 
     runs-on: ubuntu-24.04
     steps:
